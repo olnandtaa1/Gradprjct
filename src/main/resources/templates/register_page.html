@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Register Page</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+    <div class="signup">
+        <form method="post"  th:action="@{/register}" th:object="${registerRequest}">
+
+            <label for="chk" aria-hidden="true">Sign up</label>
+            <input type="login" name="login" placeholder="Login" required="">
+            <input type="email" name="email" placeholder="Email" required="">
+            <input type="password" name="pswd" placeholder="Password" required="">
+            <button>Sign up</button>
+        </form>
+    </div>
+
+    <div class="login">
+        <form method="post" th:action="@{/login}" th:object="${loginRequest}">
+
+            <label for="chk" aria-hidden="true">Login</label>
+            <input type="email" name="email" placeholder="Email" required="">
+            <input type="password" name="pswd" placeholder="Password" required="">
+            <button>Login</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
