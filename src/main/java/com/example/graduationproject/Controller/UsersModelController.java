@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UsersModelController {
+    //
 
     private final UserService userService;
 
@@ -40,7 +41,7 @@ public class UsersModelController {
     public String login(@ModelAttribute UsersModel usersModel, Model model) {
         System.out.println("Login request " + usersModel);
         UsersModel authenticatedUser = userService.authenticate(usersModel.getEmail(), usersModel.getPassword());
-        if (/*authenticatedUser != null*/ usersModel.getEmail()) {
+        if (authenticatedUser != null) {
             model.addAttribute("userLogin", authenticatedUser.getEmail());
         return "personal_page";
         } else {

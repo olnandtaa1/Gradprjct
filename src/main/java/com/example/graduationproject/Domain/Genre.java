@@ -2,7 +2,7 @@ package com.example.graduationproject.Domain;
 
 import javax.persistence.*;
 import java.util.Objects;
-
+//
 @Entity
 @Table(name = "genres")
 public class Genre {
