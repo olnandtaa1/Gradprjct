@@ -1,3 +1,4 @@
+/*
 package com.example.graduationproject.Controller;
 
 import com.example.graduationproject.Domain.User;
@@ -46,3 +47,4 @@ public class AdmController {
         return "redirect:/admin/editusers";
     }
 }
+*/

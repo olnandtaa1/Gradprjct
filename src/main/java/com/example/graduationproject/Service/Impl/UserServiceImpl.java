@@ -4,7 +4,7 @@ import com.example.graduationproject.Domain.Role;
 import com.example.graduationproject.Domain.User;
 import com.example.graduationproject.Repository.RoleRepository;
 import com.example.graduationproject.Repository.UserRepository;
-import com.example.graduationproject.Service.UserService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
