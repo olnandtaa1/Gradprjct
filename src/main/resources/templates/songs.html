@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<style type="text/css">
+    .tg {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border-color: #ccc;
+    }
+
+    .tg td {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: #ccc;
+        color: #333;
+        background-color: #fff;
+    }
+
+    .tg th {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: #ccc;
+        color: #333;
+        background-color: #f0f0f0;
+    }
+
+    .tg .tg-4eph {
+        background-color: #f9f9f9
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>songs</title>
+</head>
+<body>
+<h1>list of songs</h1>
+<div th:if="${!listSong.isEmpty()}">
+    <table class="tg" border="3">
+        <tr>
+            <td width="80">id</td>
+            <td width="120">title</td>
+            <td width="120">author</td>
+            <td width="120">price</td>
+            <td width="50">edit</td>
+            <td width="50">delete</td>
+        </tr>
+        <th:block th:each="song : ${listSong}">
+            <tr>
+                <td th:text="${song.id}"></td>
+                <td>
+                    <a th:href="@{/songs/{id}(id=${song.id})}" th:text="${song.title}"></a>
+                </td>
+                <td th:text="${song.title}"></td>
+                <td th:text="${song.duration}"></td>
+                <td>
+                    <a th:href="@{/songs/edit/{id}(id=${song.id})}">edit</a>
+                </td>
+                <td>
+                    <a th:href="@{/songs/remove/{id}(id=${song.id})}">delete</a>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+<br/>
+<br/>
+<div>
+    <h1>add book form</h1>
+    <form class="tg" action="#" th:action="@{/songs/add}" th:object="${song}" method="post">
+        <p><input type="hidden" th:field="*{id}"/></p>
+        <p>title: <input type="text" th:field="*{title}" required/></p>
+        <p>author: <input type="text" th:field="*{duration}" required/></p>
+        <p>
+            <input type="submit" value="Submit" />
+            <input type="reset" value="Reset" />
+        </p>
+    </form>
+</div>
+<br/>
+<div>
+    <a href="/">index</a>
+</div>
+</body>
+</html>
