@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<style type="text/css">
+    .tg {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border-color: #ccc;
+    }
+
+    .tg td {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: #ccc;
+        color: #333;
+        background-color: #fff;
+    }
+
+    .tg th {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: #ccc;
+        color: #333;
+        background-color: #f0f0f0;
+    }
+
+    .tg .tg-4eph {
+        background-color: #f9f9f9
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>albums</title>
+</head>
+<body>
+<h1>list of albums</h1>
+<div th:if="${!listAlbum.isEmpty()}">
+    <table class="tg" border="3">
+        <tr>
+            <td width="80">id</td>
+            <td width="120">title</td>
+            <td width="120">author</td>
+            <td width="120">price</td>
+            <td width="50">edit</td>
+            <td width="50">delete</td>
+        </tr>
+        <th:block th:each="album : ${listAlbum}">
+            <tr>
+                <td th:text="${album.id}"></td>
+                <td>
+                    <a th:href="@{/albums/{id}(id=${album.id})}" th:text="${album.title}"></a>
+                </td>
+                <td th:text="${album.title}"></td>
+                <td th:text="${album.genre}"></td>
+                <td th:text="${album.year}"></td>
+                <td>
+                    <a th:href="@{/albums/edit/{id}(id=${album.id})}">edit</a>
+                </td>
+                <td>
+                    <a th:href="@{/albums/remove/{id}(id=${album.id})}">delete</a>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+<br/>
+<br/>
+<div>
+    <h1>add album form</h1>
+    <form class="tg" action="#" th:action="@{/albums/add}" th:object="${album}" method="post">
+        <p><input type="hidden" th:field="*{id}"/></p>
+        <p>title: <input type="text" th:field="*{title}" required/></p>
+        <p>genre: <input type="text" th:field="*{genre}" required/></p>
+        <p>year: <input type="text" th:field="*{year}" required/></p>
+        <p>
+            <input type="submit" value="Submit" />
+            <input type="reset" value="Reset" />
+        </p>
+    </form>
+</div>
+<br/>
+<div>
+    <a href="/">index</a>
+</div>
+</body>
+</html>

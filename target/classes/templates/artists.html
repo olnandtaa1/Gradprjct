@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<style type="text/css">
+    .tg {
+        border-collapse: collapse;
+        border-spacing: 0;
+        border-color: #ccc;
+    }
+
+    .tg td {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: #ccc;
+        color: #333;
+        background-color: #fff;
+    }
+
+    .tg th {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: #ccc;
+        color: #333;
+        background-color: #f0f0f0;
+    }
+
+    .tg .tg-4eph {
+        background-color: #f9f9f9
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>artists</title>
+</head>
+<body>
+<h1>list of artists</h1>
+<div th:if="${!listArtist.isEmpty()}">
+    <table class="tg" border="3">
+        <tr>
+            <td width="80">id</td>
+            <td width="120">first name</td>
+            <td width="120">last name</td>
+            <td width="120">Country</td>
+            <td width="120">Website</td>
+            <td width="50">edit</td>
+            <td width="50">delete</td>
+        </tr>
+        <th:block th:each="artist : ${listArtist}">
+            <tr>
+                <td th:text="${artist.id}"></td>
+                <td>
+                    <a th:href="@{/artists/{id}(id=${artist.id})}" th:text="${artist.firstname}"></a>
+                </td>
+                <td th:text="${artist.firstname}"></td>
+                <td th:text="${artist.lastname}"></td>
+                <td th:text="${artist.country}"></td>
+                <td>
+                    <a th:href="@{/artists/edit/{id}(id=${artist.id})}">edit</a>
+                </td>
+                <td>
+                    <a th:href="@{/artists/remove/{id}(id=${artist.id})}">delete</a>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+<br/>
+<br/>
+<div>
+    <h1>add artist form</h1>
+    <form class="tg" action="#" th:action="@{/artists/add}" th:object="${artist}" method="post">
+        <p><input type="hidden" th:field="*{id}"/></p>
+        <p>title: <input type="text" th:field="*{firstname}" required/></p>
+        <p>genre: <input type="text" th:field="*{lastname}" required/></p>
+        <p>year: <input type="text" th:field="*{country}" required/></p>
+        <p>
+            <input type="submit" value="Submit" />
+            <input type="reset" value="Reset" />
+        </p>
+    </form>
+</div>
+<br/>
+<div>
+    <a href="/">index</a>
+</div>
+</body>
+</html>
